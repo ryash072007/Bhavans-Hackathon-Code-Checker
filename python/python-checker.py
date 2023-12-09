@@ -39,6 +39,8 @@ class PythonChecker:
         return correct_outputs[question_index]
 
 # For testing purposes
+# Mock Usage in Final Code
+# from python.python_checker import PythonChecker
 if __name__ == "__main__":
     TEAM_CODE_MOCK = "AAAAAA"
     PyChecker = PythonChecker(True)
