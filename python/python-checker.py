@@ -1,7 +1,7 @@
 import subprocess
 
 correct_outputs: dict = {
-    1: "Hello World!\n",
+    1: "Hello World!\nChecking another print\n",
     2: "4152\n",
     3: "Confirming Output (Intentionally wrong)\n"
 }
@@ -44,6 +44,6 @@ class PythonChecker:
 if __name__ == "__main__":
     TEAM_CODE_MOCK = "AAAAAA"
     PyChecker = PythonChecker(True)
-    print(PyChecker.is_correct_output(TEAM_CODE_MOCK, 1, 'print("Hello World!")'))
+    print(PyChecker.is_correct_output(TEAM_CODE_MOCK, 1, 'print("Hello World!")\nprint("Checking another print")'))
     print(PyChecker.is_correct_output(TEAM_CODE_MOCK, 2, 'print(str(4152))'))
     print(PyChecker.is_correct_output(TEAM_CODE_MOCK, 3, 'print("Confirming Output")'))
