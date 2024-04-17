@@ -38,6 +38,14 @@ class PythonChecker:
     def get_correct_output(self, question_index: int):
         return correct_outputs[question_index]
 
+    def check_python_file(self, question_index: int, file_path: str, args = []):
+        try:
+            output = self.run_python_file(file_path, args)
+            return output == self.get_correct_output(question_index)
+        except Exception as e:
+            if self._debug: print(f"Error occured while running {file_path}:\n", e)
+            return False
+    
 # For testing purposes
 # Mock Usage in Final Code
 # from python.python_checker import PythonChecker
