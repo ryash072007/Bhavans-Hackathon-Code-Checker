@@ -1,6 +1,10 @@
 import subprocess
-import os
 
+correct_outputs: dict = {
+    1: "Hello, World!",
+    2: "4152\n",
+    3: "Confirming Output (Intentionally wrong)\n"
+}
 
 class CChecker:
     def __init__(self, debug: bool = False):
@@ -41,14 +45,29 @@ class CChecker:
             if error:
                 return error
             
-            code_output = self.get_output(output_file)
+            output = self.get_output(output_file)
+            print(output)
             
-            print(code_output)
+            return output == self.get_correct_output(question_index)
             
         except Exception as e:
             if self._debug: print(f"Error occured while running {file_path}:\n", e)
             return False
+    
+    def get_correct_output(self, question_index: int):
+        return correct_outputs[question_index]
 
 if __name__ == "__main__":
     TEAM_CODE_MOCK = "AAAAAA"
     checker = CChecker(True)
+    code = """
+#include <stdio.h>
+
+int main() {
+   printf("Hello, World!");
+   return 0;
+}
+"""
+
+    print(checker.is_correct_output(TEAM_CODE_MOCK, 1, code))
+
